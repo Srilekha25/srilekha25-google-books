@@ -6,21 +6,23 @@ import SearchBar from "./containers/SearchBar/SearchBar";
 import Footer from "./containers/Footer/Footer";
 import BookCards from "./containers/BookCards/BookCards";
 
-
-import styles from "./App.modules.scss"
+import styles from "./App.modules.scss";
+import Books from "./containers/Books/Books";
 
 function App() {
   const [dataFromAPI, setDataFromAPI] = useState([]);
-  let copyOfDataFromAPI = [...dataFromAPI];
+  console.log("data in app.jsx", dataFromAPI);
+
+  const handleSearch = (data) => {
+    setDataFromAPI(data);
+  };
 
   return (
-    <div className={styles.App}>
-      <Header />
-      <SearchBar onSearch={(data) => setDataFromAPI(data)} />
-      {copyOfDataFromAPI.map((copyOfData) => (
-      <BookCards {...copyOfData.author}/>
-      ))}
-      <Footer />
+    <div>
+      <Header className={styles.App} />
+      <SearchBar className={styles.App} onSearch={handleSearch} />
+      <BookCards bookCards ={dataFromAPI}/>
+      <Footer className={styles.App} />
     </div>
   );
 }

@@ -3,8 +3,8 @@ import styles from "./Footer.modules.scss";
 
 const Footer = () => {
   return (
-    <div>
-      <p className={styles.p}>Build by Srilekha</p>
+    <div className={styles.footer}>
+      <div>Build by Srilekha</div>
     </div>
   );
 };

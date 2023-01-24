@@ -2,30 +2,39 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Search } from "./Search.js";
-import styles from "./SearchBar.modules.scss"
+import styles from "./SearchBar.modules.scss";
 
-const SearchBar = ({onSearch}) => {
+const SearchBar = ({ onSearch }) => {
   const [initialSearchTerm, setSearchTerm] = useState("");
-  const [initialAPI, APIAfterSearch] = useState("");
+  const [initialAPI, APIAfterSearch] = useState([]);
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  const handleSubmit = async () => {
-    const data = await Search(initialSearchTerm);
-    console.log("data in handle submit", data);
-    onSearch(data);
+  const handleSubmit = () => {
+    console.log("data in handle submit", initialAPI);
+    console.log("type of dataFromAPI",typeof(initialAPI));
+    if(initialAPI){
+      onSearch(initialAPI);
+    }else{
+      console.log("didnt get any response");
+    }
   };
 
-  // useEffect(()=>{
-  //   Search(initialSearchTerm);
-  // },initialSearchTerm)
+  useEffect(() => {
+    if (setSearchTerm) {
+      console.log("initialSearchTerm", initialSearchTerm);
+      Search(initialSearchTerm)
+        .then((data) => APIAfterSearch(data))
+        .catch((error) => console.log("error", error))
+        .finally(() => console.log("in finally"));
+    }
+  }, [initialSearchTerm]);
 
   return (
     <div className={styles.SearchBar}>
       <input
-         
         value={initialSearchTerm}
         onChange={handleChange}
         type="text"

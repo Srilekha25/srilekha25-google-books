@@ -1,0 +1,10 @@
+.Cards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  
+    max-width: fit-content;
+}
+
+img{
+    height: 20vh;
+    width: 10vw;
+}

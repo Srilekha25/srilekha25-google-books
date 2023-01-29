@@ -1,29 +1,43 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.modules.scss";
+import { useState, useContext } from "react";
 import Header from "./containers/Header/Header";
 import SearchBar from "./containers/SearchBar/SearchBar";
-import Footer from "./containers/Footer/Footer";
-import BookCards from "./containers/BookCards/BookCards";
+import BooksList from "./containers/BooksList/BooksList";
+import ApiDataProvider from "./context/apiDataProvider.jsx";
+import { ApiDataContext } from "./context/apiDataProvider.jsx";
 
-import styles from "./App.modules.scss";
-import Books from "./containers/Books/Books";
+
+
+import styles from "./App.module.scss";
+import LoadingSpinner from "./components/Loading/Loading";
 
 function App() {
+  const [searchTermfromSearchBar, setSearchTermfromSearchBar] = useState("");
   const [dataFromAPI, setDataFromAPI] = useState([]);
-  console.log("data in app.jsx", dataFromAPI);
+  
 
   const handleSearch = (data) => {
     setDataFromAPI(data);
   };
 
+  const getSearchTerm = (term) => {
+    setSearchTermfromSearchBar(term);
+  };
+
   return (
-    <div>
-      <Header className={styles.App} />
-      <SearchBar className={styles.App} onSearch={handleSearch} />
-      <BookCards bookCards ={dataFromAPI}/>
-      <Footer className={styles.App} />
-    </div>
+    
+      <div className={styles.App}>
+        <div>
+          <Header />
+          <SearchBar onSearch={handleSearch} searchTerm={getSearchTerm} />
+        </div>
+        <div>
+          <BooksList
+            booksList={dataFromAPI}
+            searchTerm={searchTermfromSearchBar}
+          />
+        </div>
+      </div>
+  
   );
 }
 

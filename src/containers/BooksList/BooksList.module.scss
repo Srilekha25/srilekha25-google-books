@@ -1,0 +1,31 @@
+.BooksList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 10px;
+  column-gap: 10px;
+  background-color: whitesmoke;
+  color: black;
+  border: 1px solid none;
+  border-radius: 30px;
+  .container__error{
+    background-color: #2c4e6b;
+    .container__error__message{
+      text-align: center;
+      color: whitesmoke;
+    }
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .BooksList {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 5px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .BooksList {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

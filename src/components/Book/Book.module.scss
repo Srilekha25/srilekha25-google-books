@@ -1,0 +1,43 @@
+.container__cards__flex {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  text-align: center;
+  background-color: whitesmoke;
+  color: black;
+  font-size: 15px;
+  font-family:sans-serif;
+  border: 1px solid black;
+  margin: 15px;
+  &:hover{
+    
+  }
+}
+
+.container__cards__flex:hover {
+  box-shadow: 0 0 20px rgb(11, 10, 10);
+  transform: scale(1.02);
+}
+
+img {
+  height: 100%;
+  width: 120px;
+  border-radius: 6px;
+  border-right: 1px solid black;
+  margin-right: 10px;
+}
+
+.container__text__align {
+  text-align: left;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  
+}
+
+@media only screen and (max-width: 480px) {
+  
+}

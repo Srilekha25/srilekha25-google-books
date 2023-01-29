@@ -1,46 +1,67 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Search } from "./Search.js";
-import styles from "./SearchBar.modules.scss";
+import { ApiDataContext } from "../../context/ApiDataProvider.jsx";
+import Loading from '../../components/Loading/Loading'
+import ErrorPage from "../../components/ErrorPage/ErrorPage";
 
-const SearchBar = ({ onSearch }) => {
+import styles from "./SearchBar.module.scss";
+
+const SearchBar = ({ onSearch, searchTerm }) => {
+  const [inputValue, setInputValue] = useState("");
   const [initialSearchTerm, setSearchTerm] = useState("");
   const [initialAPI, APIAfterSearch] = useState([]);
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  
+  
+  const { apiData, setApiData } = useContext(ApiDataContext);
+  
   const handleChange = (event) => {
-    setSearchTerm(event.target.value);
+    setInputValue(event.target.value);
   };
-
-  const handleSubmit = () => {
-    console.log("data in handle submit", initialAPI);
-    console.log("type of dataFromAPI",typeof(initialAPI));
-    if(initialAPI){
-      onSearch(initialAPI);
-    }else{
-      console.log("didnt get any response");
-    }
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearchTerm(inputValue);
+    setInputValue("");
   };
-
+  
   useEffect(() => {
-    if (setSearchTerm) {
-      console.log("initialSearchTerm", initialSearchTerm);
+    if (initialSearchTerm) {
+      setLoading(true);
       Search(initialSearchTerm)
-        .then((data) => APIAfterSearch(data))
-        .catch((error) => console.log("error", error))
-        .finally(() => console.log("in finally"));
+      .then((data) => {
+        APIAfterSearch(data.items);
+        onSearch(data.items);
+        searchTerm(initialSearchTerm);
+      })
+      .catch(() => setError(true))
+      .finally(() => setLoading(false));
     }
   }, [initialSearchTerm]);
-
+  
   return (
-    <div className={styles.SearchBar}>
-      <input
-        value={initialSearchTerm}
-        onChange={handleChange}
-        type="text"
-        id="input__text"
-      />
-      <button onClick={handleSubmit}>Submit</button>
+    <div className={styles.container__searchBar}>
+      <div>
+        <input
+          className={styles.container__searchBar__inputfield}
+          value={inputValue}
+          onChange={handleChange}
+          type="text"
+          id="input__text"
+        />
+        <button
+          className={styles.button__searchBar__submit}
+          
+          onClick={handleSubmit}
+          >
+          Search
+        </button>
+          {loading && <Loading/>}
+          {error && <ErrorPage/>}
+      </div>
     </div>
   );
 };

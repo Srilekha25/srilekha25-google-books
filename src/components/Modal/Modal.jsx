@@ -18,9 +18,9 @@ const Modal = (props) => {
         modalState ? styles.active : ""
       }`}
     >
-      <div className={styles.container__modal__content}>
+      <div className={styles.container__modal__content} onClick={actionToOpenModal}>
         <div className={styles.container__modal__close}>
-          <button onClick={actionToOpenModal}>&times;</button>
+          <button>&times;</button>
         </div>
         <div className={styles.container__modal__body}>
           <img className={styles.container__image} src={props.Image} />

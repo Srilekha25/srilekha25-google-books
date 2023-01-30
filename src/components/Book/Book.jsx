@@ -11,23 +11,22 @@ const Book = ({
   booksListForModal,
   notFound
 }) => { 
+  //State to open Modal
   const [isOpen, setOpenModal] = useState(false);
+
+  //Get the id of the book which is clicked on screen
   const [clickedId, setClickedId] = useState(0);
 
+
+  //Function to set state for modal open and close
   const openModal = () => {
     setOpenModal(!isOpen);
     setClickedId(id);
   };
-
+//Getting the book based on the card clicked
   let bookClicked = booksListForModal.filter((book, index) => index === id);
 
   return (
-    // {id ? 
-    // }
-     // <div className={styles.container__error}>
-
-        //   <p className={styles.container__error__message}>No results found for the search "{searchTerm}"</p>
-        // </div>
     <div className={styles.container__cards__flex} onClick={openModal}>
       <div className={styles.img}>
         <img src={Image} />

@@ -1,17 +1,19 @@
+@import "../../assets/palette";
+
 .container__searchBar {
   text-align: center;
   margin-top: 1%;
   margin-bottom: 1%;
-  color: black;
+  color: $text-color;
 }
 
 .container__searchBar__inputfield {
   width: 10%;
   padding: 1vh 15vw;
   margin: 8px 0;
-  border: 1px solid #ccc;
+  border: 1px solid $text-color-bg;
   border-radius: 6px;
-  color: black;
+  color: $text-color;
 }
 
 .button__searchBar__submit {
@@ -19,7 +21,7 @@
   text-decoration: none;
   border: none;
   border-radius: 6px;
-  background-color: black;
-  color: white;
+  background-color: $text-color;
+  color: $text-color-bg;
   cursor: pointer;
 }

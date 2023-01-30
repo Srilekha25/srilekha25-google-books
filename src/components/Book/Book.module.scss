@@ -1,18 +1,17 @@
+@import "../../assets/palette";
+
 .container__cards__flex {
   display: flex;
   flex-direction: row;
-  border: 1px solid #ccc;
+  border: 1px solid $text-color-bg;
   border-radius: 6px;
   text-align: center;
-  background-color: whitesmoke;
-  color: black;
+  background-color: $text-color-bg;
+  color: $text-color;
   font-size: 15px;
   font-family:sans-serif;
-  border: 1px solid black;
-  margin: 15px;
-  &:hover{
-    
-  }
+  border: 1px solid $text-color;
+  margin: 25px;
 }
 
 .container__cards__flex:hover {
@@ -24,20 +23,10 @@ img {
   height: 100%;
   width: 120px;
   border-radius: 6px;
-  border-right: 1px solid black;
+  border-right: 1px solid $text-color;
   margin-right: 10px;
 }
 
 .container__text__align {
   text-align: left;
-}
-
-
-
-@media only screen and (max-width: 768px) {
-  
-}
-
-@media only screen and (max-width: 480px) {
-  
 }

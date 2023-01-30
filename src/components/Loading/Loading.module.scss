@@ -1,4 +1,6 @@
+@import "../../assets/palette";
+
 .container__loading{
-    color: white;
+    color: $text-color-bg;
     font-size: medium;
 }

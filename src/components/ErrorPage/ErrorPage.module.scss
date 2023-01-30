@@ -1,7 +1,11 @@
+@import "../../assets/palette";
+
 .errorPage{
-    display: none;
-    .active{
-        display: flex;
-        color: white;
+    visibility: hidden;
+    background-color: $background-color;
+    color: $text-color-bg;
+    &.active{
+        visibility: visible;
     }
 }
+

@@ -1,5 +1,6 @@
 import React from "react";
 import Book from "../../components/Book/Book";
+import ErrorPage from "../../components/ErrorPage/ErrorPage";
 
 import styles from "./BooksList.module.scss";
 
@@ -33,7 +34,7 @@ const BooksList = ({ booksList, searchTerm }) => {
             booksListForModal = {apiDataForModal}
           />
     
-        )) : ""
+        )) : <ErrorPage checkingAPIData = {checkingAPIData} searchTerm = {searchTerm}/>
        
          }
     </div>

@@ -10,7 +10,7 @@ const Book = ({
   Description,
   booksListForModal,
   notFound
-}) => {
+}) => { 
   const [isOpen, setOpenModal] = useState(false);
   const [clickedId, setClickedId] = useState(0);
 

@@ -2,36 +2,44 @@ import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { Search } from "./Search.js";
 import { ApiDataContext } from "../../context/ApiDataProvider.jsx";
-import Loading from '../../components/Loading/Loading'
-import ErrorPage from "../../components/ErrorPage/ErrorPage";
 
+// Importing jsx
+import Loading from '../../components/Loading/Loading'
+
+// Importing Style sheet
 import styles from "./SearchBar.module.scss";
 
 const SearchBar = ({ onSearch, searchTerm }) => {
+  //Sets input value
   const [inputValue, setInputValue] = useState("");
+  //Sets the search term
   const [initialSearchTerm, setSearchTerm] = useState("");
+  //Sets Data from API
   const [initialAPI, APIAfterSearch] = useState([]);
-
+  // Set loading state
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   
-  
+  //FOr context
   const { apiData, setApiData } = useContext(ApiDataContext);
   
+  //Handles change in input
   const handleChange = (event) => {
     setInputValue(event.target.value);
   };
   
+  //Sets Search term for API call
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearchTerm(inputValue);
     setInputValue("");
   };
   
+ 
   useEffect(() => {
     if (initialSearchTerm) {
       setLoading(true);
-      Search(initialSearchTerm)
+      Search(initialSearchTerm)   //Sends search term to API Call
       .then((data) => {
         APIAfterSearch(data.items);
         onSearch(data.items);
@@ -59,8 +67,8 @@ const SearchBar = ({ onSearch, searchTerm }) => {
           >
           Search
         </button>
+        {/* Set Loading */}
           {loading && <Loading/>}
-          {error && <ErrorPage/>}
       </div>
     </div>
   );

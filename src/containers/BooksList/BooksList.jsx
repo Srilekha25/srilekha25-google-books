@@ -1,18 +1,18 @@
 import React from "react";
 import Book from "../../components/Book/Book";
+import ErrorPage from "../../components/ErrorPage/ErrorPage";
 
 import styles from "./BooksList.module.scss";
 
 const BooksList = ({ booksList, searchTerm }) => {
   const checkingAPIData =
-  (booksList !== undefined && booksList.length > 0) ? true : false;
+    booksList === undefined || booksList.length < 0 ? false : true;
   const apiDataForModal = booksList;
-  
+
   return (
     <div className={styles.BooksList}>
-      {checkingAPIData ?
+      {checkingAPIData ? (
         booksList.map((book, index) => (
-  
           <Book
             key={index}
             id={index}
@@ -24,18 +24,28 @@ const BooksList = ({ booksList, searchTerm }) => {
             }
             Title={book.volumeInfo.title}
             Author={
-              book.volumeInfo.authors && book.volumeInfo.authors.length > 0
-                ? book.volumeInfo.authors.map((author, index) => (
-                    <p key={index}>{author}</p>
-                  ))
-                : <p>UnKnown Author</p>
+              book.volumeInfo.authors && book.volumeInfo.authors.length > 0 ? (
+                book.volumeInfo.authors.map((author, index) => (
+                  <p key={index}>{author}</p>
+                ))
+              ) : (
+                <p>UnKnown Author</p>
+              )
             }
-            booksListForModal = {apiDataForModal}
+            booksListForModal={apiDataForModal}
           />
-    
-        )) : ""
-       
-         }
+        ))
+      ): (
+        <div className={styles.container__errorPage}>
+          <span className={styles.container__errorPage__text}>
+            <ErrorPage
+              checkingAPIData={checkingAPIData}
+              searchTerm={searchTerm}
+            />
+          </span>
+          {/* Trying to display error page */}
+        </div>
+      )} 
     </div>
   );
 };

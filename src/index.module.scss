@@ -1,7 +1,9 @@
+@import "./assets/palette";
+
 :root{
    
-    background-color: #2c4e6b;
-    color: white;
+    background-color: $background-color;
+    color: $text-color-bg;
     width: 100%;
     font-family: 'Roboto Mono', monospace;   
 }

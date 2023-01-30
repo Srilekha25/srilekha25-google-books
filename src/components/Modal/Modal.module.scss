@@ -1,3 +1,5 @@
+@import "../../assets/palette";
+
 .container__modal {
   position: fixed;
   display: flex;
@@ -23,8 +25,8 @@
     width: 40%;
     height: 60%;
     position: relative;
-    background-color: white;
-    color: black;
+    background-color: $text-color-bg;
+    color: $text-color;
     overflow-y: scroll;
     overscroll-behavior-y: auto;
 
@@ -49,8 +51,8 @@
 
     .container__link {
       text-decoration: none;
-      color: white;
-      background-color: black;
+      color: $text-color-bg;
+      background-color: $text-color;
       padding: 2px 10px;
     }
   }

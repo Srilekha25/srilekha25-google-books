@@ -1,10 +1,15 @@
-import React from 'react'
+import React from "react";
+import styles from "./ErrorPage.module.scss";
 
-const ErrorPage = () => {
-  console.log("inside error")
+const ErrorPage = ({ searchTerm, checkingAPIData }) => {
+  console.log("inside error");
   return (
-    <p>Something is wrong. Please try again later</p>
-  )
-}
+    <div className={styles.ErrorPage}>
+      {!checkingAPIData && (
+        <p>No results found for the search "{searchTerm}"</p>
+      )}
+    </div>
+  );
+};
 
-export default ErrorPage
+export default ErrorPage;

@@ -5,11 +5,9 @@ import Modal from "../Modal/Modal";
 const Book = ({
   id,
   Image,
-  Title,
+  title,
   Author,
-  Description,
   booksListForModal,
-  notFound
 }) => { 
   //State to open Modal
   const [isOpen, setOpenModal] = useState(false);
@@ -33,7 +31,7 @@ const Book = ({
       </div>
       <div className={styles.container__text__align}>
         <p>
-          <b>{Title}</b>
+          <b>{title}</b>
         </p>
         <p>By {Author}</p>
       </div>
@@ -45,35 +43,13 @@ const Book = ({
             toggle={isOpen}
             actionToOpenModal={openModal}
             booksListForModal={booksListForModal}
+            //Displays details on Modal
             id={index}
-            Image={
-              book.volumeInfo.imageLinks &&
-              book.volumeInfo.imageLinks.smallThumbnail.length > 0
-                ? book.volumeInfo.imageLinks.smallThumbnail
-                : "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png"
-            }
+            Image={book.volumeInfo.imageLinks.smallThumbnail}
             Title={book.volumeInfo.title}
-            Author={
-              book.volumeInfo.authors && book.volumeInfo.authors.length > 0
-                ? book.volumeInfo.authors.map((author, index) => (
-                    <p key={index}>{author}</p>
-                  ))
-                : <p>UnKnown Author</p>
-            }
-            description={
-              book.volumeInfo.description &&
-              book.volumeInfo.description.length > 0 ? (
-                book.volumeInfo.description
-              ) : (
-                <p>No Description available</p>
-              )
-            }
-            preview={
-              book.volumeInfo.previewLink &&
-              book.volumeInfo.previewLink.length > 0
-                ? book.volumeInfo.previewLink
-                : <p>No Preview available</p>
-            }
+            Author={book.volumeInfo.authors}
+            description={book.volumeInfo.description}
+            preview={book.volumeInfo.previewLink}
             
           />
         ))}

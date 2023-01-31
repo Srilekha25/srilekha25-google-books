@@ -1,7 +1,8 @@
 import React from "react";
+//Importing jsx
 import Book from "../../components/Book/Book";
 import ErrorPage from "../../components/ErrorPage/ErrorPage";
-
+//Importing styles
 import styles from "./BooksList.module.scss";
 
 const BooksList = ({ booksList, searchTerm }) => {
@@ -16,22 +17,9 @@ const BooksList = ({ booksList, searchTerm }) => {
           <Book
             key={index}
             id={index}
-            Image={
-              book.volumeInfo.imageLinks &&
-              book.volumeInfo.imageLinks.smallThumbnail.length > 0
-                ? book.volumeInfo.imageLinks.smallThumbnail
-                : "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png"
-            }
-            Title={book.volumeInfo.title}
-            Author={
-              book.volumeInfo.authors && book.volumeInfo.authors.length > 0 ? (
-                book.volumeInfo.authors.map((author, index) => (
-                  <p key={index}>{author}</p>
-                ))
-              ) : (
-                <p>UnKnown Author</p>
-              )
-            }
+            Image={book.volumeInfo.imageLinks.smallThumbnail}
+            title={book.volumeInfo.title}
+            Author={book.volumeInfo.authors}
             booksListForModal={apiDataForModal}
           />
         ))

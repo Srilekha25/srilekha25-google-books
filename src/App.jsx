@@ -4,11 +4,9 @@ import { useState, useContext } from "react";
 import Header from "./containers/Header/Header";
 import SearchBar from "./containers/SearchBar/SearchBar";
 import BooksList from "./containers/BooksList/BooksList";
-import ApiDataProvider from "./context/apiDataProvider.jsx";
-import { ApiDataContext } from "./context/apiDataProvider.jsx";
+
 // Styles for App.jsx
 import styles from "./App.module.scss";
-
 
 function App() {
 
@@ -17,12 +15,12 @@ function App() {
   //Set Data received from API Call
   const [dataFromAPI, setDataFromAPI] = useState([]);
   //To change styles for header
-  const [receivedData, setReceivedData] = useState(false);
+  const [receivedDataForHeader, setReceivedDataForHeader] = useState(false);
   
 //Function to set Data from API
   const handleSearch = (data) => {
     setDataFromAPI(data);
-    setReceivedData(true);
+    setReceivedDataForHeader(true);
   };
 
 //Function to set Search Term
@@ -34,7 +32,7 @@ function App() {
     
       <div className={styles.App}>
         <div>
-          <Header toggle={receivedData}/>
+          <Header toggle={receivedDataForHeader}/>
           <SearchBar onSearch={handleSearch} searchTerm={getSearchTerm} />
         </div>
         <div>

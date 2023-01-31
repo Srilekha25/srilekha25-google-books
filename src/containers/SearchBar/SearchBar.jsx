@@ -60,6 +60,7 @@ const SearchBar = ({ onSearch, searchTerm }) => {
           onChange={handleChange}
           type="text"
           id="input__text"
+          required
         />
         <button
           className={styles.button__searchBar__submit}

@@ -38,12 +38,12 @@ const BooksList = ({ booksList, searchTerm }) => {
       ): (
         <div className={styles.container__errorPage}>
           <span className={styles.container__errorPage__text}>
+            {/* Displays error message */}
             <ErrorPage
               checkingAPIData={checkingAPIData}
               searchTerm={searchTerm}
             />
           </span>
-          {/* Trying to display error page */}
         </div>
       )} 
     </div>

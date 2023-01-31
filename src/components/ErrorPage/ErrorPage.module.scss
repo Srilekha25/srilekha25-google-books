@@ -1,11 +1,9 @@
 @import "../../assets/palette";
 
 .errorPage{
-    visibility: hidden;
     background-color: $background-color;
-    color: $text-color-bg;
-    &.active{
-        visibility: visible;
-    }
 }
-
+.container__errorPage__text{
+    margin-top: 20vh;
+    color: $text-color-bg;
+}

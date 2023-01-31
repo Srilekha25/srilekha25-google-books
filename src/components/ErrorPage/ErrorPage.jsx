@@ -1,12 +1,14 @@
 import React from "react";
 import styles from "./ErrorPage.module.scss";
 
-const ErrorPage = ({ searchTerm, checkingAPIData }) => {
+const ErrorPage = ({ searchTerm }) => {
   return (
     <div className={styles.ErrorPage}>
-      {!checkingAPIData ? (
-        <p>No results found for search "{searchTerm}"</p>
-      ):<p>Something went wrong! Please try again later</p>}
+      {
+        <p className={styles.container__errorPage__text}>
+          No results found for search "{searchTerm}"
+        </p>
+      }
     </div>
   );
 };

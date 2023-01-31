@@ -3,7 +3,7 @@ import styles from "./Modal.module.scss";
 import ReactDOM from "react-dom";
 
 const Modal = (props) => {
-
+  //Changes state for Modal to open and close
   const modalState = props.toggle;
   const actionToOpenModal = props.actionToOpenModal;
 

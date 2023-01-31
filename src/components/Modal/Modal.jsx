@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 import styles from "./Modal.module.scss";
 import ReactDOM from "react-dom";
-import { ApiDataContext } from "../../context/ApiDataProvider";
 
 const Modal = (props) => {
-  const { apiData } = useContext(ApiDataContext);
+
   const modalState = props.toggle;
   const actionToOpenModal = props.actionToOpenModal;
 

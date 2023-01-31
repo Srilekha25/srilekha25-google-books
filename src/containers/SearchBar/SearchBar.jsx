@@ -1,7 +1,9 @@
 import React from "react";
 import { useEffect, useState, useContext } from "react";
-import { Search } from "./Search.js";
-import { ApiDataContext } from "../../context/ApiDataProvider.jsx";
+
+//importing js
+import { fetchBooksFromApi } from "../../Data-Utils/fetchBooksFromApi";
+import { handleUndefined } from "../../Data-Utils/handleUndefined";
 
 // Importing jsx
 import Loading from "../../components/Loading/Loading";
@@ -20,16 +22,11 @@ const SearchBar = ({ onSearch, searchTerm }) => {
   //Set loading state
   const [loading, setLoading] = useState(false);
   //Set Error State
-  const [error, setError] = useState(false);
-  const [min, max] = useState(20);
-
-  //For context
-  const { apiData, setApiData } = useContext(ApiDataContext);
+  const [error1, setError] = useState(false);
 
   //Handles change in input
   const handleChange = (event) => {
     setInputValue(event.target.value);
-    
   };
 
   //Sets Search term for API call
@@ -42,13 +39,14 @@ const SearchBar = ({ onSearch, searchTerm }) => {
   useEffect(() => {
     if (initialSearchTerm) {
       setLoading(true);
-      Search(initialSearchTerm) //Sends search term to API Call by calling the API call function
+      fetchBooksFromApi(initialSearchTerm) //Sends search term to API Call by calling the API call function
         .then((data) => {
-          APIAfterSearch(data.items);
-          onSearch(data.items);
+          const cleanedData = handleUndefined(data);
+          APIAfterSearch(cleanedData);
+          onSearch(cleanedData);
           searchTerm(initialSearchTerm);
         })
-        .catch(() => setError(true))
+        .catch((error) => console.log(error.message))
         .finally(() => setLoading(false));
     }
   }, [initialSearchTerm]);
@@ -72,15 +70,7 @@ const SearchBar = ({ onSearch, searchTerm }) => {
         </button>
         {/* Display Loading */}
         {loading && <Loading />}
-        {error && <ErrorPage />}
-      </div>
-      <div>
-        <select onChange={handleChange} onClick={handleSubmit}>
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="30">30</option>
-          <option value="40">40</option>
-        </select>
+        {error1 && <ErrorPage />}
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import Modal from "../Modal/Modal";
 const Book = ({
   id,
   Image,
-  Title = "Title UnKnown",
+  Title,
   Author,
   Description,
   booksListForModal,

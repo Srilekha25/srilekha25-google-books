@@ -8,6 +8,7 @@ import Loading from '../../components/Loading/Loading'
 
 // Importing Style sheet
 import styles from "./SearchBar.module.scss";
+import ErrorPage from "../../components/ErrorPage/ErrorPage.jsx";
 
 const SearchBar = ({ onSearch, searchTerm }) => {
   //Sets input value
@@ -16,7 +17,7 @@ const SearchBar = ({ onSearch, searchTerm }) => {
   const [initialSearchTerm, setSearchTerm] = useState("");
   //Sets Data from API
   const [initialAPI, APIAfterSearch] = useState([]);
-  // Set loading state
+  //Set loading state
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   
@@ -39,7 +40,7 @@ const SearchBar = ({ onSearch, searchTerm }) => {
   useEffect(() => {
     if (initialSearchTerm) {
       setLoading(true);
-      Search(initialSearchTerm)   //Sends search term to API Call
+      Search(initialSearchTerm)   //Sends search term to API Call by calling the API call function
       .then((data) => {
         APIAfterSearch(data.items);
         onSearch(data.items);
@@ -62,13 +63,13 @@ const SearchBar = ({ onSearch, searchTerm }) => {
         />
         <button
           className={styles.button__searchBar__submit}
-          
           onClick={handleSubmit}
           >
           Search
         </button>
-        {/* Set Loading */}
+        {/* Display Loading */}
           {loading && <Loading/>}
+          {error && <ErrorPage/>}
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 
 //importing js
 import { fetchBooksFromApi } from "../../Data-Utils/fetchBooksFromApi";
@@ -22,7 +22,7 @@ const SearchBar = ({ onSearch, searchTerm }) => {
   //Set loading state
   const [loading, setLoading] = useState(false);
   //Set Error State
-  const [error1, setError] = useState(false);
+  const [error, setError] = useState(false);
 
   //Handles change in input
   const handleChange = (event) => {
@@ -39,14 +39,18 @@ const SearchBar = ({ onSearch, searchTerm }) => {
   useEffect(() => {
     if (initialSearchTerm) {
       setLoading(true);
+      setError(false);
       fetchBooksFromApi(initialSearchTerm) //Sends search term to API Call by calling the API call function
         .then((data) => {
-          const cleanedData = handleUndefined(data);
+          const cleanedData = handleUndefined(data.items);
           APIAfterSearch(cleanedData);
           onSearch(cleanedData);
           searchTerm(initialSearchTerm);
         })
-        .catch((error) => console.log(error.message))
+        .catch(() => {
+          setError(true);
+          onSearch("");
+        })
         .finally(() => setLoading(false));
     }
   }, [initialSearchTerm]);
@@ -68,9 +72,8 @@ const SearchBar = ({ onSearch, searchTerm }) => {
         >
           Search
         </button>
-        {/* Display Loading */}
         {loading && <Loading />}
-        {error1 && <ErrorPage />}
+        {error && <ErrorPage searchTerm = {initialSearchTerm}/>}
       </div>
     </div>
   );

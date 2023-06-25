@@ -4,7 +4,7 @@ Launch App -  https://srilekha25.github.io/srilekha25-google-books/
 
 # Project Features
 
-![Google books Landing Page](public/GB_books_list.png)
+![Google books Landing Page](public/Google_books_landing_Page.png)
 ![Google books App - List of all Books](public/GB_books_list.png)
 ![Google books Modal](public/GB_modal.png)
 

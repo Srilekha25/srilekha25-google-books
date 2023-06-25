@@ -1,6 +1,8 @@
 # Google Books API Search Engine
 
-Deployed using netlify. Link - https://srilekha25.github.io/srilekha25-google-books/
+Launch App -  https://srilekha25.github.io/srilekha25-google-books/
+
+# Project Features
 
 ![Google books Landing Page](public/GB_books_list.png)
 ![Google books App - List of all Books](public/GB_books_list.png)
